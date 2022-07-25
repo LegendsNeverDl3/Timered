@@ -31,29 +31,33 @@ function addInput(){
     //document.body.appendChild(spanElement)
     document.body.appendChild(inputElement);
     //bulletList();
+    bullist = 0;
 }
+var bullist = 0;
 // Adds a bulleted list to the input tag
 function bulletList(){
-    var ul = document.createElement('ul');
-    var hourLi = document.createElement('li');
-    var minLi = document.createElement('li');
-    var hourInput = document.createElement('input');
-    var minInput = document.createElement('input');
-    var hourLabel = document.createElement('label');
-    var minLabel = document.createElement('label');
+    bullist++;
+    if(bullist < 2){
+        var ul = document.createElement('ul');
+        var hourLi = document.createElement('li');
+        var minLi = document.createElement('li');
+        var hourInput = document.createElement('input');
+        var minInput = document.createElement('input');
+        var hourLabel = document.createElement('label');
+        var minLabel = document.createElement('label');
 
-    hourInput.id = "hI";
-    minInput.id = "mI";
-    hourLabel.textContent = "Hours : ";
-    minLabel.textContent = "Min : ";
-    ul.appendChild(hourLi);
-    ul.appendChild(minLi);
-    hourLi.appendChild(hourLabel);
-    minLi.appendChild(minLabel);
-    document.body.appendChild(ul);
-    hourLabel.appendChild(hourInput);
-    minLabel.appendChild(minInput);
-
+        hourInput.id = "hI";
+        minInput.id = "mI";
+        hourLabel.textContent = "Hours : ";
+        minLabel.textContent = "Min : ";
+        ul.appendChild(hourLi);
+        ul.appendChild(minLi);
+        hourLi.appendChild(hourLabel);
+        minLi.appendChild(minLabel);
+        document.body.appendChild(ul);
+        hourLabel.appendChild(hourInput);
+        minLabel.appendChild(minInput);
+    }
 }
 // Removes bulleted list
 function removeBulletList(){
@@ -65,8 +69,8 @@ function removeBulletList(){
 function minusInput(){
     var numbOfInputs = document.getElementsByTagName("input");
     // if you don't do this, you will get a undefined error when removing when theres no input tag to remove
-    if(numbOfInputs.length > 3){
-        document.getElementsByTagName('input')[3].remove();
+    if(numbOfInputs.length > 1){
+        document.getElementsByTagName('input')[1].remove();
     }
     
 }

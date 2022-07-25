@@ -11,8 +11,5 @@ body{
 }
 #plussign, #minussign{
     float:right;
-    height: auto; 
-    width: auto; 
-    max-width: 30px; 
-    max-height: 30px;
+    box-shadow: 0 9px 16px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
 }
