@@ -1,0 +1,30 @@
+/* Deals with the styleing of the timer section from the mainpage */
+body{
+    padding:10px;
+    min-width:300px;
+    min-height:400px;
+    background-image:url("background.jpg");
+    background-repeat:no-repeat;
+    background-size:9cm;
+    
+}
+div.tim{
+    text-align:center;
+    font-size:xx-large;
+    color:yellow;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+    appearance: none;
+}
+input.seconds, input.minutes, input.hours{
+    width:7cm;
+    font-size:xx-large;
+}
+span.countdown{
+    font-size:1.5cm;
+}
+div.startstop{
+    display:flex;
+    justify-content:center;
+}

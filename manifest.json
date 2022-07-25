@@ -1,0 +1,43 @@
+{
+    "name": "Timered",
+    "description": "Build an Extension!",
+    "version": "1.0.0",
+    "manifest_version": 3,
+    "background":{
+        "service_worker": "background.js"
+    },
+    "options_page": "timerpage.html",
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "extensionImage.png",
+            "32": "extensionImage.png",
+            "48": "extensionImage.png",
+            "128": "extensionImage.png"
+        }
+    
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["foreground.js"]
+        }
+    ],
+
+    "icon": {
+        "16": "extensionImage.png",
+        "32": "extensionImage.png",
+        "48": "extensionImage.png",
+        "128": "extensionImage.png"
+    },
+    "permissions": [
+        "tabs",
+        "storage",
+        "alarms",
+        "scripting"    
+    ],
+    "host_permissions": [
+        "https://www.google.com/*"
+    ]
+    
+  }

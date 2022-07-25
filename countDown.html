@@ -1,0 +1,30 @@
+<!--The origional / main countdown html page that has a numerical countdown-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>TheTimeController</title>
+    <link href="countDown.css" rel="stylesheet" type="text/css" />
+    <script src="countDown.js" rel="text/javascript"></script>
+  </head>
+  <body>
+    <div>
+        <button id="return">Back</button>
+    </div>
+    <div class="timeInput">
+        <input id="time" type="number" required size="20">
+        <button class="button" id="timeBu">Set Timer</button>
+    </div>
+    <div>
+      <button class="button" id="stopAlarm">Clear Timer</button>
+    </div>
+    <div class="output">
+        <span id="max" class="errors"></span><br>
+        <span id="outputtime" class="centered">The time is set to(min) : </span><br>
+    </div>
+    <div class="output">
+        <span id="outputon" class="centered">The Timer is : Off</span><br>
+    </div>
+  </body>
+</html>

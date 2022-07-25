@@ -1,0 +1,34 @@
+/* Deals with the styleing of the mainpage */
+
+body{
+    padding:10px;
+    min-width:300px;
+    min-height:400px;
+    background-image:url("background.jpg");
+    background-repeat:no-repeat;
+    background-size:9cm;
+    
+}
+div.header{
+    color:rgb(255, 166, 0);
+    text-decoration: underline dotted yellowgreen;
+}
+button.switch{
+    color:yellow;
+    background-color:transparent;
+    border-color:transparent;
+    outline-color:transparent;
+    text-decoration: underline yellow;
+    font-size:25px;
+}
+button.switch:hover{
+    cursor:pointer;
+}
+div.rea{
+    display:flex;
+    flex-direction:column;
+    text-align:center;
+}
+div.moreinfo{
+    text-align:center;
+}
