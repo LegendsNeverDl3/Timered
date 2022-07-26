@@ -9,7 +9,7 @@ window.onload = function(){
     var plus = document.getElementById("plussign");
     var minus = document.getElementById("minussign");
     switchBack.onclick = swit;
-    plus.onclick = addInput;
+    plus.onclick = newInputSet;
     minus.onclick = minusInput;
     
 }
@@ -19,47 +19,36 @@ function swit(){
     location.href = "popup.html";
 }
 
-// Adds an html input tag to the page
-function addInput(){
-    //appending new input on click
-    var inputElement = document.createElement('input');
-    //var div = document.createElement('div');
 
+// Adds a bulleted list with extra input
+function newInputSet(){
+    var inputElement = document.createElement('input');
+    var div = document.createElement('div');
+    var ul = document.createElement('ul');
+    var hourLi = document.createElement('li');
+    var minLi = document.createElement('li');
+    var hourInput = document.createElement('input');
+    var minInput = document.createElement('input');
+    var hourLabel = document.createElement('label');
+    var minLabel = document.createElement('label');
+
+    hourInput.id = "hI";
+    minInput.id = "mI";
     inputElement.className = "addedInput";
     inputElement.id = "addedInput";
-    //element.className = x[0];
-    //document.body.appendChild(spanElement)
-    document.body.appendChild(inputElement);
-    //div.appendChild(inputElement);
-    //bulletList();
-    bullist = 0;
-    bulletList();
-}
-var bullist = 0;
-// Adds a bulleted list to the input tag
-function bulletList(){
-    bullist++;
-    if(bullist < 2){
-        var ul = document.createElement('ul');
-        var hourLi = document.createElement('li');
-        var minLi = document.createElement('li');
-        var hourInput = document.createElement('input');
-        var minInput = document.createElement('input');
-        var hourLabel = document.createElement('label');
-        var minLabel = document.createElement('label');
 
-        hourInput.id = "hI";
-        minInput.id = "mI";
-        hourLabel.textContent = "Hours : ";
-        minLabel.textContent = "Min : ";
-        document.body.appendChild(ul);
-        ul.appendChild(hourLi);
-        ul.appendChild(minLi);
-        hourLi.appendChild(hourLabel);
-        minLi.appendChild(minLabel);
-        hourLabel.appendChild(hourInput);
-        minLabel.appendChild(minInput);
-    }
+    hourLabel.textContent = "Hours : ";
+    minLabel.textContent = "Min : ";
+
+    document.body.appendChild(div);
+    div.prepend(inputElement);
+    div.appendChild(ul);
+    ul.appendChild(hourLi);
+    ul.appendChild(minLi);
+    hourLi.appendChild(hourLabel);
+    minLi.appendChild(minLabel);
+    hourLabel.appendChild(hourInput);
+    minLabel.appendChild(minInput);
 }
 // Removes bulleted list
 function removeBulletList(){
