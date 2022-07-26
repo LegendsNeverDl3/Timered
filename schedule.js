@@ -8,13 +8,12 @@ window.onload = function(){
     var switchBack = document.getElementById("sw");
     var plus = document.getElementById("plussign");
     var minus = document.getElementById("minussign");
-    var addedInput = document.getElementById("addedInput");
-    addedInput.onclick = bulletList;
     switchBack.onclick = swit;
     plus.onclick = addInput;
     minus.onclick = minusInput;
     
 }
+
 // This code switches the current page (schedule.html) back to the "main page"
 function swit(){
     location.href = "popup.html";
@@ -24,14 +23,17 @@ function swit(){
 function addInput(){
     //appending new input on click
     var inputElement = document.createElement('input');
-    //var spanElement = document.createElement('span');
+    //var div = document.createElement('div');
+
     inputElement.className = "addedInput";
     inputElement.id = "addedInput";
     //element.className = x[0];
     //document.body.appendChild(spanElement)
     document.body.appendChild(inputElement);
+    //div.appendChild(inputElement);
     //bulletList();
     bullist = 0;
+    bulletList();
 }
 var bullist = 0;
 // Adds a bulleted list to the input tag
@@ -50,11 +52,11 @@ function bulletList(){
         minInput.id = "mI";
         hourLabel.textContent = "Hours : ";
         minLabel.textContent = "Min : ";
+        document.body.appendChild(ul);
         ul.appendChild(hourLi);
         ul.appendChild(minLi);
         hourLi.appendChild(hourLabel);
         minLi.appendChild(minLabel);
-        document.body.appendChild(ul);
         hourLabel.appendChild(hourInput);
         minLabel.appendChild(minInput);
     }
@@ -72,7 +74,6 @@ function minusInput(){
     if(numbOfInputs.length > 1){
         document.getElementsByTagName('input')[1].remove();
     }
-    
 }
 /* Ideas I'm trying out */
 /* 
