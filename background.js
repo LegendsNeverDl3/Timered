@@ -9,7 +9,7 @@ var numOfClicks = 0;
 //message listener
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse){
     // this runs the countdown for the countDownTemp1 / the origional countdown I had
-    if(parseInt(message) < 41){
+    if(parseInt(message) < 61){
         countDownTemp1 = parseInt(message);
         if(message == "0"){
             clearInterval("countDow");

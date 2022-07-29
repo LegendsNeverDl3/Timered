@@ -30,7 +30,7 @@ function saveChanges(){
 // Accessing the Changes saved 
 function getChanges(){
     chrome.storage.sync.get(['count', 'time', 'timeon'], function(data){
-        if(data.count > 0 && data.count <= 40){
+        if(data.count > 0 && data.count <= 61){
             var outputon = document.getElementById("outputon");
             var ou = document.getElementById("outputtime");
             ou.innerHTML = data.time;
@@ -46,7 +46,7 @@ function timerandcount(){
 function timerSet(){
     var ti = document.getElementById("time");
     var ou = document.getElementById("outputtime");
-    if(ti.value > 40){
+    if(ti.value > 60){
         warningText("Please input a number that is 40 min or less!");
     }else if(ti.value.includes("-")){
         warningText("Please input a POSITIVE number!");
