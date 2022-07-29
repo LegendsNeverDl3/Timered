@@ -4,7 +4,9 @@ What it should do is be able to allow an input whhere
 it will popup an input to set how many hours / minutes you want to do that for
 and you can set several of those all at once
 */
-
+var mainHours = 0;
+var mainmin = 0;
+var mainSec = 0;
 window.onload = function(){
     var switchBack = document.getElementById("sw");
     var plus = document.getElementById("plussign");
@@ -14,6 +16,7 @@ window.onload = function(){
     plus.onclick = newInputSet;
     minus.onclick = minusInput;
     startSave.onclick = saveUserData;
+    //PLEASE NOTE, NEED TO ADD A RESET BUTTON
     
 }
 
@@ -95,7 +98,6 @@ function saveUserData(){
             // be careful for cases e.g. if user leaves random set empty
             // could use below to deal w/ that
             numbOfInputs[(6 + i)].remove();
-
         }else{
             if(saveMin[i].value == ""){
                 storeMH.min[i] = 0;
@@ -104,6 +106,8 @@ function saveUserData(){
             }else{
                 storeMH.min[i] = formatMin(parseInt(saveMin[i].value));
                 storeMH.hour[i] = formatHour(parseInt(saveHour[i].value));
+                mainHours = formatHour(parseInt(saveHour[i].value));
+                mainMin = formatMin(parseInt(saveMin[i].value));
             }
         }
     }
@@ -140,6 +144,37 @@ function warningText(warn){
     setTimeout(function () {
         max.remove();
     }, 8000);
+}
+
+// Runs the interval countdown
+function theCount(mainCountDown){
+    var timerr = setInterval(function(){
+        if(temp){
+            clearInterval(timerr);
+            temp = false;
+        }else if(mainHours == 0 && mainMin == 0 && mainSec == 0){
+            clearInterval(timerr);
+        }else if(mainMin == 0 && mainSec == 0){
+            mainHours--; 
+            mainMin = 59;
+            mainSec = 60;
+            mainSec--;
+            printNum(mainCountDown);                
+        }else if(mainSec == 0){ 
+            mainMin--;
+            mainSec = 60;
+            mainSec--;
+            printNum(mainCountDown);
+        }else{
+            mainSec--;
+            printNum(mainCountDown);
+        }
+
+    },1000);
+}
+
+function printNum(mainCountDown){
+    mainCountDown.innerHTML = parseInt(mainHours) + ":" + parseInt(mainMin) + ":" + parseInt(mainSec);
 }
 
 /* Ideas I'm trying out */
