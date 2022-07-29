@@ -13,6 +13,7 @@ window.onload = function(){
     switchBack.onclick = swit;
     plus.onclick = newInputSet;
     minus.onclick = minusInput;
+    startSave.onclick = saveUserData;
     
 }
 
@@ -46,6 +47,10 @@ function newInputSet(){
         hourLabel.textContent = "Hours : ";
         minLabel.textContent = "Min : ";
 
+        inputElement.type = "text";
+        hourInput.type = "number";
+        minInput.type = "number";
+
         document.body.appendChild(div);
         div.prepend(inputElement);
         div.appendChild(ul);
@@ -59,16 +64,7 @@ function newInputSet(){
         warningText("The amount of activites is currently maxed at 20!");
     }
 }
-// displays a warning text
-function warningText(warn){
-    var max = document.createElement("p");
-    max.textContent = warn;
-    max.style.color = "red";
-    document.body.appendChild(max);
-    setTimeout(function () {
-        max.remove();
-    }, 8000);
-}
+
 // Removes bulleted list
 function removeBulletList(){
     document.getElementsByTagName("ul")[0].remove();
@@ -94,19 +90,58 @@ function saveUserData(){
         hour: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     }  
     for(var i = 0; i < saveMin.length; i++){
-        if(parseInt(saveMin[i].value) == 0 && parseInt(saveMin[i].value) == 0){
+        // if both min and hour is zero or empty
+        if((parseInt(saveMin[i].value) == 0 && parseInt(saveHour[i].value) == 0) || (saveMin[i].value == "" && saveHour[i].value == "")){
             // be careful for cases e.g. if user leaves random set empty
             // could use below to deal w/ that
             numbOfInputs[(6 + i)].remove();
 
         }else{
-            storeMH.min[i] = parseInt(saveMin[i].value);
-            storeMH.Hour[i] = parseInt(saveMin[i].value);
+            if(saveMin[i].value == ""){
+                storeMH.min[i] = 0;
+            }else if(saveHour[i].value == ""){
+                storeMH.hour[i] = 0;
+            }else{
+                storeMH.min[i] = formatMin(parseInt(saveMin[i].value));
+                storeMH.hour[i] = formatHour(parseInt(saveHour[i].value));
+            }
         }
     }
     
 
 }
+
+/* Helper Methods */
+
+// formats min to 60 or below
+function formatMin(theMin){
+    if(theMin > 60){
+        return theMin % 60;
+    }else{
+        return theMin;
+    }
+}
+
+// formats hour according to min(if min is > 60)
+function formatHour(theMin, theHour){
+    if(theMin > 60){
+        return theHour + Math.floor(theMin / 60);
+    }else{
+        return theHour;
+    }
+}
+
+// displays a warning text
+function warningText(warn){
+    var max = document.createElement("p");
+    max.textContent = warn;
+    max.style.color = "red";
+    document.body.appendChild(max);
+    setTimeout(function () {
+        max.remove();
+    }, 8000);
+}
+
 /* Ideas I'm trying out */
 /* 
 var inputClick1 = document.getElementById("hI");
