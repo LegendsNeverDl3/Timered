@@ -21,7 +21,7 @@ window.onload = function(){
     mainPage.onclick = swi;
     startButton.onclick = startTimer;
     clearButton.onclick = changeBoolean;
-    mainPage.ontouchmove
+
      // accessing the saved data
      chrome.storage.local.get(['number', 'pausednum'], function(savedSec) {
         console.log(savedSec.number);

@@ -38,7 +38,7 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse){
         }else{
         // this runs the second countdown
         if(message == "clear"){
-            clearInterval(backgroundcount);
+            //clearInterval(backgroundcount);
             chrome.storage.local.remove("number",function() {
             });
             countDownTemp2 = "clear";
@@ -51,13 +51,15 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse){
                     clearInterval(backgroundcount);
                     chrome.storage.local.remove("number",function() {});
                     chrome.tabs.create({url: "timerpage.html"});
-                }
-                if(countDownTemp2 == "clear" ^ countDownTemp2 == "NaN" ^ message == "clear"){
+                }else if(countDownTemp2 == "clear" || message == "clear"){
                     clearInterval(backgroundcount);
                     chrome.storage.local.remove("number",function() {});
+                }else{
+                    countDownTemp2--;
+                    chrome.storage.local.set({number: (countDownTemp2)}, function(){})
+                    console.log(countDownTemp2)
                 }
-                countDownTemp2--;
-                chrome.storage.local.set({number: (countDownTemp2)}, function(){})
+                
             },1000)
         }
         
