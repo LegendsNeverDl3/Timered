@@ -1,0 +1,41 @@
+<!--The timerpage is the page that popups when the countdown runs to zero. It is to notify the user
+when the time is up-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>TheTimeControllerPage</title>
+    <link href="timerpage.css" rel="stylesheet" type="text/css" />
+    <script src="timerpage.js" rel="text/javascript"></script>
+  </head>
+  <body id="backg">
+    <div class="format">
+      <div class="select">
+        <select id="snoozeoption">
+          <option>SnoozeOptions</option>
+          <option>5min</option>
+          <option>4min</option>
+          <option>3min</option>
+          <option>2min</option>
+          <option>1min</option>
+        </select>
+      </div>
+      <div>
+        <label for="musicInput" class="musicInput">Input a song (liszt or liszt1)</label>
+        <input id="musicInput" class="musicInput" type="text">
+      </div> 
+    </div>
+    <div>
+      <h1 class="header">The Timer has reached Zero!</h3>
+    </div>
+    <div class="format">
+      <div class="select">
+        <button class="button" id="snooze" type="button">Snooze</button>
+      </div>
+      <div>
+        <audio controls id="temp" src="Liszt.mp3"></audio>
+      </div> 
+    </div>
+  </body>
+</html>

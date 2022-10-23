@@ -1,0 +1,33 @@
+<!--The main HTML page that you see when you click on the popup. It contains the "links" 
+to parts of the extension (countdown, timer , schedule)-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>TheTimeController</title>
+    <link href="popup.css" rel="stylesheet" type="text/css" />
+    <script src="popup.js" rel="text/javascript"></script>
+  </head>
+  <body id ="backg">
+    <div>
+        <div class="header">
+            <h1 class="title">The Time C🕒ntr🕔ller</h1>
+           <!-- <img class="other" border="0" alt="clock" src="clock.gif" width="90" height="50">-->
+        </div>
+        <div class="rea">
+          <button id="ct" class="switch">CountdownMode</button>
+        </div>
+        <div class="rea">
+          <br><button id="cloc" class="switch">Clock/TimerMode</button>
+        </div>
+        <div class="rea">
+          <br><button id="switch" class="switch">ScheduleMode</button>
+        </div>
+        <div class="moreinfo">
+          <br><button id="butto" class="butto">More Info</button><br>
+          <span id="about"></span>
+      </div>
+    </div>
+  </body>
+</html>

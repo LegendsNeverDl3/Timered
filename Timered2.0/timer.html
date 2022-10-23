@@ -1,0 +1,41 @@
+<!--The timer / time page. Where it tells the time and allows the user to have a countdown
+that includes seconds-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Time</title>
+    <link href="timer.css" rel="stylesheet" type="text/css" />
+    <script src="timer.js" rel="text/javascript"></script>
+  </head>
+  <body>
+    <div id="clock" class="tim"></div>
+    <div>
+      <button id="switch">Back</button>
+    </div>
+    <div class="tim">
+        <!--<input class="countdown" id="countdown" type="number" dir="rtl">-->
+        <span id="countdown" class="countdown">00:00:00</span>
+    </div>
+    <div>
+      <label for="hours">Hour(s)</label><br>
+      <input class="hours" id="hours" type="number">
+    </div>
+    <br>
+    <div>
+      <label for="minutes">Minute(s)</label><br>
+      <input class="minutes" id="minutes" type="number">
+    </div>
+    <br>
+    <div>
+      <label for="seconds">Second(s)</label><br>
+      <input class="seconds" id="seconds" type="number">
+    </div>
+    <br>
+    <div class="startstop">
+      <button id="start">Start</button>
+      <button id="clear">Clear</button>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+/* Deals with the styleing of the schedule section from the mainpage */
+
+body{
+    padding:10px;
+    min-width:300px;
+    min-height:400px;
+    background-image:url("background.jpg");
+    background-repeat:no-repeat;
+    background-size:9cm;
+    
+}
+#plussign, #minussign{
+    float:right;
+    box-shadow: 0 9px 16px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
