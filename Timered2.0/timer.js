@@ -8,6 +8,7 @@ clock is just for visual use.
 var mainHours = 0;
 var mainMin = 0;
 var mainSec = 0;
+var mainCentiSec = 0;
 var temp = false;
 window.onload = function(){
     clock();
@@ -19,9 +20,9 @@ window.onload = function(){
     var mainPage = document.getElementById("switch");
     startButton.innerHTML = "Start";
     mainPage.onclick = swi;
-    startButton.onclick = startTimer;
+    startButton.onclick = newtimerIdea;
     clearButton.onclick = changeBoolean;
-
+    /*
      // accessing the saved data
      chrome.storage.local.get(['number', 'pausednum'], function(savedSec) {
         console.log(savedSec.number);
@@ -39,6 +40,7 @@ window.onload = function(){
             printNum(mainCountDown);
         }
     });
+    */
     
 }
 // this function changes the boolean so that it will go through and if statement and clear the timer
@@ -142,7 +144,32 @@ function convertTotalSecTo(){
     mainHours = Math.floor(mainMin / 60);
     mainMin = mainMin % 60;
 }
+function timer(){
+    sec();
+    min();
+    hour();
+    let startingTime = new Date();
+    let endingTime = startingTime + combineMinSecHourToSec() * 1000;
+    let result = endingTime - new Date();
+    convertDate(result);
+}
 
+function convertDate(time){
+    let finalTime = time;
+    time = time + "";
+    mainHours = (finalTime / 3600000);
+    mainMin = (finalTime / 60000);
+    mainSec = (finalTime / 1000);
+    mainCentiSec = (parseInt((time[(time.length()) - 3, (time.length())]))/1000)*100;
+}
+
+function newtimerIdea(){
+    var mainCountDown = document.getElementById("countdown");
+    var newInterval = setInterval(function(){
+        timer();
+        printNum(mainCountDown);
+    }, 1000);
+}
 // Main timer function
 function startTimer(){
     var startButton = document.getElementById("start");
