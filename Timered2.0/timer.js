@@ -20,7 +20,7 @@ window.onload = function(){
     var mainPage = document.getElementById("switch");
     startButton.innerHTML = "Start";
     mainPage.onclick = swi;
-    startButton.onclick = newtimerIdea;
+    startButton.onclick = timer;
     clearButton.onclick = changeBoolean;
     /*
      // accessing the saved data
@@ -137,6 +137,7 @@ function sec(){
     }
     
 }
+
 // Converts the totalSec from the background script message, to hours, mins, and secs.
 function convertTotalSecTo(){
     mainMin = Math.floor(mainSec / 60);
@@ -148,26 +149,33 @@ function timer(){
     sec();
     min();
     hour();
-    let startingTime = new Date();
-    let endingTime = startingTime + combineMinSecHourToSec() * 1000;
-    let result = endingTime - new Date();
-    convertDate(result);
+    let startingTime = Date.now();
+    let endingTime = parseInt(startingTime + combineMinSecHourToSec() * 1000);
+    localStorage.setItem("startingTime", startingTime);
+    localStorage.setItem("endingTime", endingTime);
+    newtimerIdea();
 }
 
-function convertDate(time){
-    let finalTime = time;
-    time = time + "";
+function setTime(){
+    let result = parseInt(localStorage.getItem("endingTime") - Date.now());
+    let finalTime = result;
     mainHours = (finalTime / 3600000);
     mainMin = (finalTime / 60000);
     mainSec = (finalTime / 1000);
-    mainCentiSec = (parseInt((time[(time.length()) - 3, (time.length())]))/1000)*100;
+    //mainCentiSec = (parseInt((result[(result.length()) - 3, (result.length())]))/1000)*100;
 }
 
 function newtimerIdea(){
     var mainCountDown = document.getElementById("countdown");
+    printNum(mainCountDown);
     var newInterval = setInterval(function(){
-        timer();
-        printNum(mainCountDown);
+        if(Date.now() > localStorage.getItem("endingTime")){
+            clearInterval(newInterval);
+        }else{
+            setTime();
+            printNum(mainCountDown);
+        }
+
     }, 1000);
 }
 // Main timer function
@@ -175,32 +183,23 @@ function startTimer(){
     var startButton = document.getElementById("start");
     if(startButton.innerHTML == "Pause"){
         temp = true;
-        chrome.runtime.sendMessage("clear");
         startButton.innerHTML = "Continue";
-        chrome.storage.local.set({pausednum: (combineMinSecHourToSec())}, function() {
-        });
+        localStorage.setItem("timeLeft", parseInt(localStorage.getItem("endingTime")-(Date.now() - localStorage.getItem("startingTime"))));
     }else if(startButton.innerHTML == "Continue"){
-        chrome.storage.local.remove("pausednum",function() {
-        });
-        chrome.runtime.sendMessage({thevalue: combineMinSecHourToSec()});
         resetInput();
         startButton.innerHTML = "Pause";
-        var mainCountDown = document.getElementById("countdown"); 
-        printNum(mainCountDown);
-        theCount(mainCountDown);
+        localStorage.setItem("endingTime", localStorage.getItem("endingTime") + localStorage.getItem("timeLeft"));
+        setTime();
+        newtimerIdea();
     }else{
-        sec();
-        min();
-        hour();
+        timer();
         mainHours = parseInt(Math.floor(mainHours));
         mainMin = parseInt(Math.floor(mainMin));
         mainSec = parseInt(Math.floor(mainSec));
-        chrome.runtime.sendMessage({thevalue: combineMinSecHourToSec()});
         resetInput();
         startButton.innerHTML = "Pause";
-        var mainCountDown = document.getElementById("countdown");
-        printNum(mainCountDown);
-        theCount(mainCountDown);
+        setTime();
+        newtimerIdea();
     }  
 }
 
@@ -208,9 +207,8 @@ function startTimer(){
 function startBackTimer(){
     var startButton = document.getElementById("start");
     startButton.innerHTML = "Pause";
-    var mainCountDown = document.getElementById("countdown");
-    printNum(mainCountDown);
-    theCount(mainCountDown);
+    setTime();
+    newtimerIdea();
 }
 // Combines hours, seconds, and minutes, so that I can do a countdown in the background script
 function combineMinSecHourToSec(){
@@ -222,6 +220,7 @@ function combineMinSecHourToSec(){
 function clearTimer(){
     chrome.runtime.sendMessage("clear");
     chrome.storage.local.clear();
+    localStorage.clear();
     resetInput();
     var startButton = document.getElementById("start");
     var mainCountDown = document.getElementById("countdown");
@@ -333,3 +332,4 @@ function resetInput(){
     theMin.value = "";
     theSec.value = "";
 }
+
