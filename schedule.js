@@ -82,12 +82,18 @@ function minusInput(){
         numbOfInputs[(numbOfInputs.length - 1)].remove();
     }
 }
+//TODO: Make an extra section called "change position" will ring a timer or whatever every 40 ish min to change position and / or rest from computer
+//TODO: Make a project that changes the image on the lockscreen to my TODO list I neeed to coplete (calendar style)
+//TODO: Include  a stopwatch function
 // function activated when user click a button that says start.
 function saveUserData(){
     var minHourIndex = 0;
     var saveMin = document.getElementsByClassName("minI");
     var saveHour = document.getElementsByClassName("hourI");
     var numbOfInputs = document.getElementsByTagName("div");
+    var h = document.getElementsByClassName("h");
+    var m;
+    //max limit is 20
     const storeMH = {
         min: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         hour: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
